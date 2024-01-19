@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PsychologistController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +47,7 @@ Route::controller(BusinessController::class)->group(function () {
     // TODO: This must be fixed, postponed in advance of other tables
     Route::post('/business/{businessid}/addEmployee/{userid}', 'addEmployee');
 });
+
+Route::resource('booking', BookingController::class);
+Route::resource('invoice', InvoiceController::class);
+Route::resource('payment', PaymentController::class);
