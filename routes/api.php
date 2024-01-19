@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PsychologistController;
+use App\Http\Controllers\BusinessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +26,21 @@ Route::get('/hello', function () {
     return "Hello World API";
 });
 
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user/{id}', 'show');
+    Route::post('/user', 'store');
+});
+
+
+
+Route::controller(PsychologistController::class)->group(function () {
+    Route::get('/psychologist/{id}', 'show');
+    Route::post('/psychologist', 'store');
+});
+
+Route::controller(BusinessController::class)->group(function () {
+    Route::get('/business/{id}', 'show');
+    Route::post('/business', 'store');
+    // TODO: This must be fixed, postponed in advance of other tables
+    Route::post('/business/{businessid}/addEmployee/{userid}', 'addEmployee');
+});
